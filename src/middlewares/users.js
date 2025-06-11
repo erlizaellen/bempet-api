@@ -1,24 +1,46 @@
-const { DataTypes } = require('sequelize')
-const sequelize = require('../config/database')
+const { Users } = require('../models')
+const bcrypt = require('bcrypt')
 
-const Users = sequelize.define('Users', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true
-        }
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
+async function validateCreateUser(req, res, next){
+    const { name, email, password } = req.body
+
+    if(!name || !email || !password){
+        return res.status(400).send({
+            error: 'Todos os campos são obrigatórios'
+        })
     }
-})
+    
+    if(name.length > 255){
+        return res.status(400).send({
+            error: 'O nome não pode ter mais que 255 caracteres'
+        })
+    }
 
-module.exports = Users
+    if(email.length > 255){
+        return res.status(400).send({
+            error: 'O email não pode ter mais que 255 caracteres'
+        })
+    }
+
+    const existingUser = await Users.findOne({
+        where: {
+            email: email
+        }
+    })
+
+    if(existingUser){
+        return res.status(400).send({
+            error: 'Email já cadastrado'
+        })
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    req.body.password = hashedPassword
+
+    next()
+}
+
+module.exports = {
+    validateCreateUser
+}
