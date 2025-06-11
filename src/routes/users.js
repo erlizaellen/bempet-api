@@ -1,24 +1,12 @@
-const { DataTypes } = require('sequelize')
-const sequelize = require('../config/database')
+const express = require('express')
+const router = express.Router()
+const usersMiddleware = require('../middlewares/users')
+const usersController = require('../controllers/users')
 
-const Users = sequelize.define('Users', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true
-        }
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-})
+router.post(
+    '/users',
+    usersMiddleware.validateCreateUser,
+    usersController.createUser
+)
 
-module.exports = Users
+module.exports = router;
