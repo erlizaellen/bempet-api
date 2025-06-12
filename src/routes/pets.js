@@ -11,7 +11,12 @@ router.post(
 
 router.get(
     '/pets',
-     petsController.getPets,
+    petsController.getPets,
+)
+router.delete(
+    '/pets/:id',
+    petsController.deletePet,
+    petsMiddleware.validateDeletePet
 )
 
 
