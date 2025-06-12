@@ -3,9 +3,9 @@ const {Pets} = require('../models')
 async function getPets(req, res) {
     try {
         //findAll é função nativa do sequelize
-        const Pets = await Pets.findAll()
+        const pets = await Pets.findAll()
 
-        return res.send(Pets)
+        return res.send(pets)
     } catch (error) {
         console.error(error)
         return res.status(500).send('Erro ao buscar pet(s)')

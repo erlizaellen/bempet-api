@@ -8,5 +8,17 @@ router.post(
     usersMiddleware.validateCreateUser,
     usersController.createUser
 )
+router.get(
+    '/users',
+    usersController.getUsers
+)
+router.delete(
+    '/users/:id',
+    usersController.deleteUser
+)
+router.put(
+    '/users/:id',
+    usersController.updateUser
+)
 
 module.exports = router;
