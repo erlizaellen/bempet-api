@@ -1,6 +1,15 @@
 const { Users } = require('../models')
+const bcrypt = require('bcrypt')
 
 async function createUser(req, res){
+    const { password } = req.body;
+    bcrypt.hash(password, 10, async (err, hash) => {
+        if (err) {
+            console.error(err)
+            return res.status(500).send('Erro ao criar usuário')
+        }
+        req.body.password = hash
+    })
     try {
         await Users.create(req.body)
         return res.status(201).send('Usuário criado com sucesso')
