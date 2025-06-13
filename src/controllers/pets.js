@@ -37,6 +37,7 @@ async function deletePet(req, res){
         console.error(error)
         return res.status(500).send('Erro ao deletar pet')
     }
+    
 }
 
 module.exports = {
