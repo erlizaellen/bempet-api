@@ -37,22 +37,19 @@ async function deletePet(req, res) {
         console.error(error)
         return res.status(500).send('Erro ao deletar pet')
     }
-async function EditPet(req,res){
-    
-}
 }
 
   async function updatePet(req, res) {
     try {
       const { id } = req.params;
-      const { nome, tutor, peso } = req.body;
+      const { nome, peso } = req.body;
 
       const pets = await Pets.findByPk(id);
       if (!pets) {
         return res.status(404).json({ erro: 'Usuário não encontrado' });
       }
   
-      await pets.update({ nome, tutor,peso });
+      await pets.update({ nome,peso });
 
       res.json(pets);
     } catch (error) {
