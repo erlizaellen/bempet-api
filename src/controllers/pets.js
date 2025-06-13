@@ -42,8 +42,28 @@ async function EditPet(req,res){
 }
 }
 
+  async function updatePet(req, res) {
+    try {
+      const { id } = req.params;
+      const { nome, tutor, peso } = req.body;
+
+      const pets = await Pets.findByPk(id);
+      if (!pets) {
+        return res.status(404).json({ erro: 'Usuário não encontrado' });
+      }
+  
+      await pets.update({ nome, tutor,peso });
+
+      res.json(pets);
+    } catch (error) {
+      res.status(500).json({ erro: 'Erro ao atualizar usuário', detalhes: error });
+    }
+  }
+
+
 module.exports = {
     getPets,
     createPet,
-    deletePet
+    deletePet,
+    updatePet
 }
