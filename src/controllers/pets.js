@@ -1,4 +1,4 @@
-const {Pets} = require('../models')
+const { Pets } = require('../models')
 
 async function getPets(req, res) {
     try {
@@ -12,7 +12,7 @@ async function getPets(req, res) {
     }
 }
 
-async function createPet(req,res){
+async function createPet(req, res) {
     try {
         const produto = await Pets.create(req.body)
         return res.status(201).send(produto)
@@ -22,8 +22,8 @@ async function createPet(req,res){
     }
 }
 
-async function deletePet(req, res){
-    const {id} = req.params;
+async function deletePet(req, res) {
+    const { id } = req.params;
     try {
         //destroy é função nativa do sequelize
         await Pets.destroy({
@@ -37,7 +37,9 @@ async function deletePet(req, res){
         console.error(error)
         return res.status(500).send('Erro ao deletar pet')
     }
+async function EditPet(req,res){
     
+}
 }
 
   async function updatePet(req, res) {
