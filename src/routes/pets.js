@@ -17,9 +17,10 @@ router.get(
 )
 router.delete(
     '/pets/:id',
-    petsController.deletePet,
-    petsMiddleware.validateDeletePet
+    petsMiddleware.validateDeletePet,
+    petsController.deletePet
 )
+
 
 
 module.exports = router;
