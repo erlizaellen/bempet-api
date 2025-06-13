@@ -1,6 +1,6 @@
 function validateCreatePet(req, res, next){
-    const {nome, raca, nascimento, peso, user} = req.body;
-    
+    const {nome, raca, nascimento, peso} = req.body;
+    const user = req.user
 
     if (!nome || !raca || !nascimento || !peso || !user){
         return res.status(400).send('Todos os campos sao obrigatorios')
@@ -12,7 +12,7 @@ function validateCreatePet(req, res, next){
         return res.status(400).send('Raça do pet não pode ter mais de 50 caracteres')
     }
     
-    req.userId = user.id
+    req.body.userId = user.id
 
     next();
 } 

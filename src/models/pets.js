@@ -9,7 +9,8 @@ const Pets = sequelize.define('Pets', {
     },
     userId:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
     },
     nome:{
         type: DataTypes.STRING,
