@@ -1,7 +1,10 @@
-function validateCreatePet(req, res, next){
-    const {tutor, nome, raca, nascimento, peso} = req.body;
 
-    if (!tutor || !nome || !raca || !nascimento || !peso){
+
+function validateCreatePet(req, res, next){
+    const {nome, raca, nascimento, peso} = req.body;
+    const userId = req.user.id
+
+    if (!userId || !nome || !raca || !nascimento || !peso){
         return res.status(400).send('Todos os campos sao obrigatorios')
     }
     if (nome.length > 100){
@@ -10,8 +13,6 @@ function validateCreatePet(req, res, next){
     if (raca.length > 50){
         return res.status(400).send('Raça do pet não pode ter mais de 50 caracteres')
     }
-    
-
     next();
 } 
 

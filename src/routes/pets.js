@@ -10,7 +10,7 @@ router.post(
 )
 
 router.get(
-    '/pets',
+    '/pets/:id',
     petsController.getPets,
 )
 router.delete(
