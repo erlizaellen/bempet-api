@@ -3,15 +3,17 @@ function validateCreatePet(req, res, next){
     const {nome, raca, nascimento, peso} = req.body;
     const user = req.user
 
-    if (!nome || !raca || !nascimento || !peso || !user){
+
+function validateCreatePet(req, res, next) {
+    const { nome, raca, nascimento, peso } = req.body;
+
+    if (!nome || !raca || !nascimento || !peso) {
+
 
         return res.status(400).send('Todos os campos sao obrigatorios')
     }
     if (nome.length > 100) {
         return res.status(400).send('Nome do pet não pode ter mais de 100 caracteres')
-    }
-    if (tutor.length > 100) {
-        return res.status(400).send('Seu nome não pode ter mais de 100 caracteres')
     }
     if (raca.length > 50) {
         return res.status(400).send('Raça do pet não pode ter mais de 50 caracteres')
@@ -40,9 +42,23 @@ function validateCreatePet(req, res, next){
     }
     next();
 }
+async function validatePutPet(req, res,next) {
+     const { nome, peso } = req.body;
+
+    if ( !nome || !peso) {
+        return res.status(400).send('Todos os campos sao obrigatorios')
+    }
+    if (nome.length > 100) {
+        return res.status(400).send('Nome do pet não pode ter mais de 100 caracteres')
+    }
+
+    next();
+}   
+
 
 
 module.exports = {
     validateCreatePet,
-    validateDeletePet
+    validateDeletePet, 
+    validatePutPet
 }
