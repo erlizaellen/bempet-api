@@ -14,8 +14,8 @@ async function getPets(req, res) {
 
 async function createPet(req, res) {
     try {
-        const produto = await Pets.create(req.body)
-        return res.status(201).send(produto)
+        const pet = await Pets.create(req.body)
+        return res.status(201).send(pet)
     } catch (error) {
         console.error(error)
         return res.status(500).send('Erro ao criar pet')

@@ -7,9 +7,10 @@ const Pets = sequelize.define('Pets', {
         primaryKey: true,
         autoIncrement: true
     },
-    tutor:{
-        type: DataTypes.STRING,
-        allowNull: false
+    userId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     },
     nome:{
         type: DataTypes.STRING,
