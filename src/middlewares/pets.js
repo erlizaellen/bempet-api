@@ -2,11 +2,7 @@
 function validateCreatePet(req, res, next){
     const {nome, raca, nascimento, peso} = req.body;
     const user = req.user
-
-
-function validateCreatePet(req, res, next) {
-    const { nome, raca, nascimento, peso } = req.body;
-
+    
     if (!nome || !raca || !nascimento || !peso) {
 
 
