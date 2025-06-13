@@ -13,7 +13,6 @@ async function getPets(req, res) {
 }
 
 async function createPet(req,res){
-    const {id} =  req.params
     try {
         const pet = await Pets.create(req.body)
         return res.status(201).send(pet)
