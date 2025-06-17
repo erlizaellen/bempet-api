@@ -12,6 +12,9 @@ router.get(
     '/users',
     usersController.getUsers
 )
+router.get(
+    '/users/:id',
+    usersController.getUserById);
 router.delete(
     '/users/:id',
     usersController.deleteUser

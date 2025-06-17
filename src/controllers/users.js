@@ -30,6 +30,22 @@ async function getUsers(req, res) {
         return res.status(500).send('Erro ao buscar usuário')
     }
 }
+async function getUserById(req, res) {
+    const { id } = req.params;
+
+    try {
+        const user = await Users.findByPk(id);
+
+        if (!user) {
+            return res.status(404).send('Usuário não encontrado');
+        }
+
+        return res.send(user);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Erro ao buscar usuário');
+    }
+}
 async function deleteUser(req, res) {
     const { id } = req.params;
     try {
@@ -63,6 +79,7 @@ async function updateUser(req, res) {
 module.exports = {
     createUser,
     getUsers,
+    getUserById,
     deleteUser,
     updateUser
 }
