@@ -8,7 +8,19 @@ async function getPets(req, res) {
         return res.send(pets)
     } catch (error) {
         console.error(error)
-        return res.status(500).send('Erro ao buscar pet(s)')
+        return res.status(500).send('Erro ao buscar pets')
+    }
+}
+
+async function getPetById(req, res) {
+    const { id } = req.params;
+    try {
+        const pets = await Pets.findByPk(id)
+
+        return res.send(pets);
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send('Erro ao buscar pet')
     }
 }
 
@@ -60,6 +72,7 @@ async function deletePet(req, res) {
 
 module.exports = {
     getPets,
+    getPetById,
     createPet,
     deletePet,
     updatePet
