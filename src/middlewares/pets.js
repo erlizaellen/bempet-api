@@ -1,3 +1,4 @@
+const { Pets } = require('../models')
 
 function validateCreatePet(req, res, next){
     const {nome, raca, nascimento, peso} = req.body;
@@ -28,7 +29,7 @@ function validateCreatePet(req, res, next){
         return res.status(400).send('Id do pet é obrigatoria')
     }
 
-    const existPet =await Pets.findOne({
+    const existPet = await Pets.findOne({
         where:{
              id: id
         }
