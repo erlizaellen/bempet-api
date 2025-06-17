@@ -33,7 +33,7 @@ async function login(req, res){
         )
 
         return res.send({
-            token
+            token: token
         })
 
 
