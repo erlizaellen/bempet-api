@@ -20,6 +20,11 @@ router.get(
     petsController.getPetById,
 )
 
+router.put(
+    '/pets/:id',
+    petsController.updatePet
+)
+
 router.delete(
     '/pets/:id',
     petsMiddleware.validateDeletePet,

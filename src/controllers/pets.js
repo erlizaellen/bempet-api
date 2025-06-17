@@ -54,14 +54,14 @@ async function deletePet(req, res) {
   async function updatePet(req, res) {
     try {
       const { id } = req.params;
-      const { nome, peso } = req.body;
+      const { nome, raca ,peso } = req.body;
 
       const pets = await Pets.findByPk(id);
       if (!pets) {
         return res.status(404).json({ erro: 'Usuário não encontrado' });
       }
   
-      await pets.update({ nome,peso });
+      await pets.update({ nome,raca,peso });
 
       res.json(pets);
     } catch (error) {
