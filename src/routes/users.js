@@ -14,6 +14,9 @@ router.get(
     authMiddleware.validateToken,
     usersController.getUsers
 )
+router.get(
+    '/users/:id',
+    usersController.getUserById);
 router.delete(
     '/users/:id',
     usersController.deleteUser
