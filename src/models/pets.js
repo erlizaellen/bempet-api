@@ -1,5 +1,6 @@
 const {DataTypes} = require('sequelize')
 const sequelize = require('../config/database')
+const { text } = require('stream/consumers')
 
 const Pets = sequelize.define('Pets', {
     id:{
@@ -28,6 +29,9 @@ const Pets = sequelize.define('Pets', {
         type: DataTypes.FLOAT,
         allowNull: false
     },
+    foto:{
+        type: DataTypes.TEXT,
+    }
     // image_url:{
     //     type: DataTypes.TEXT
     // }

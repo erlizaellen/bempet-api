@@ -30,7 +30,7 @@ async function getPetsByUserId(req,res){
         const pets = Pets.findAll({
             where: {userId: id}
         })
-        return res.send(pets);
+        return res.send(pets || []);
     } catch (error) {
         console.error(error)
         return res.status(500).send('Erro ao buscar pet')
