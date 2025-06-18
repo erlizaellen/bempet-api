@@ -24,6 +24,19 @@ async function getPetById(req, res) {
     }
 }
 
+async function getPetsByUserId(req,res){
+    const {id} = req.user
+    try {
+        const pets = Pets.findAll({
+            where: {userId: id}
+        })
+        return res.send(pets);
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send('Erro ao buscar pet')
+    }
+}
+
 async function createPet(req, res) {
     try {
         const pet = await Pets.create(req.body)
@@ -73,6 +86,7 @@ async function deletePet(req, res) {
 module.exports = {
     getPets,
     getPetById,
+    getPetsByUserId,
     createPet,
     deletePet,
     updatePet

@@ -31,7 +31,8 @@ async function getUsers(req, res) {
     }
 }
 async function getUserById(req, res) {
-    const { id } = req.params;
+    const { id } = req.user;
+
 
     try {
         const user = await Users.findByPk(id);
@@ -46,6 +47,8 @@ async function getUserById(req, res) {
         return res.status(500).send('Erro ao buscar usuário');
     }
 }
+
+
 async function deleteUser(req, res) {
     const { id } = req.params;
     try {

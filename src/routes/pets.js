@@ -13,20 +13,30 @@ router.post(
 
 router.get(
     '/pets',
+    middlewareValidate.validateToken,
     petsController.getPets,
 )
 router.get(
     '/pets/:id',
+    middlewareValidate.validateToken,
     petsController.getPetById,
+)
+
+router.get(
+    '/userpets',
+    middlewareValidate.validateToken,
+    petsController.getPetsByUserId
 )
 
 router.put(
     '/pets/:id',
+    middlewareValidate.validateToken,
     petsController.updatePet
 )
 
 router.delete(
     '/pets/:id',
+    middlewareValidate.validateToken,
     petsMiddleware.validateDeletePet,
     petsController.deletePet
 )
