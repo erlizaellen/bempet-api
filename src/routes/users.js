@@ -22,10 +22,12 @@ router.get(
 
 router.delete(
     '/users/:id',
+    authMiddleware.validateToken,
     usersController.deleteUser
 )
 router.put(
     '/users/:id',
+    authMiddleware.validateToken,
     usersController.updateUser
 )
 

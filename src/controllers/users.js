@@ -51,6 +51,7 @@ async function getUserById(req, res) {
 
 async function deleteUser(req, res) {
     const { id } = req.params;
+    
     try {
         await Users.destroy({
             where: {
@@ -66,13 +67,22 @@ async function deleteUser(req, res) {
 }
 async function updateUser(req, res) {
     const { id } = req.params;
+    const { password } = req.body;
+    bcrypt.hash(password, 10, async (err, hash) => {
+        if (err) {
+            console.error(err)
+            return res.status(500).send('Erro ao criar usuário')
+        }
+        req.body.password = hash
+    })
     try {
         await Users.update(req.body, {
             where: {
                 id: id
             }
+            
         })
-
+        
         return res.status(200).send('Usuário atualizado com sucesso')
     } catch (error) {
         console.error(error)
