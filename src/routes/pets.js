@@ -31,6 +31,7 @@ router.get(
 router.put(
     '/pets/:id',
     middlewareValidate.validateToken,
+    petsMiddleware.validatePutPet,
     petsController.updatePet
 )
 
